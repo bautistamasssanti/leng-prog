@@ -9,7 +9,9 @@ import Lists (
    binaryToDecimal, toDecimal, toDec,
    decimal,
    firsts,
-   binaryAdd)
+   binaryAdd,
+   merge
+   )
 
 main :: IO ()
 main = hspec $ do
@@ -93,6 +95,7 @@ main = hspec $ do
       firsts [1, 3, 5] `shouldBe` [[1], [1, 3], [1, 3, 5]]
     it "Hello" $ do          
       firsts "Hello" `shouldBe` ["H", "He", "Hel", "Hell", "Hello"]
+
   describe "binary add" $ do    
     it "2 + 1 = 3" $ do 
       binaryAdd "11" "1"  `shouldBe` "100"
@@ -100,4 +103,11 @@ main = hspec $ do
       binaryAdd "1111" "11"  `shouldBe` "10010"
     it "\"\" + \"\" = \"0\"" $ do 
           binaryAdd "" ""  `shouldBe` "0"  
-              
+
+  describe "merge" $ do
+    it "Two lists: [1,2,4,8] [2,3,5,9]" $ do
+      merge [1,2,4,8] [2,3,5,9] `shouldBe` [1,2,2,3,4,5,8,9]
+    it "Right empty list: [1,2,3] []" $ do
+      merge [1,2,3] []  `shouldBe` [1,2,3]
+    it "Left empty list: [] [1,2,3]" $ do
+      merge [] [1,2,3] `shouldBe` [1,2,3]

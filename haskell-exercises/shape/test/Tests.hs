@@ -22,7 +22,7 @@ main = hspec $ do
     it "base" $ do
       base r01 `shouldBe` 1.0
     it "height" $ do
-      base r01 `shouldBe` 1.0
+      height r01 `shouldBe` 1.0
     it "shift" $ do
       shift r01 (1.0, 2.0) `shouldBe` Rectangle (Point {x = 1.0, y = 2.0}) (Point {x = 2.0, y = 3.0})
     it "surface" $ do
